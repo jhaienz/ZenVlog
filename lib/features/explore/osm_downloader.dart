@@ -4,12 +4,14 @@ import '../../core/db/isar_service.dart';
 import 'spot.dart';
 
 class OsmDownloader {
-  // Overpass API — free, no key required. Mirrors tried in order;
-  // overpass-api.de rate-limits (429) aggressively.
+  // Overpass API — free, no key required. Same-domain endpoints only:
+  // third-party mirrors (kumi.systems etc.) fail DNS on some ISPs.
+  // overpass-api.de intermittently refuses (406/429), so we retry rounds.
   static const _overpassMirrors = [
     'https://overpass-api.de/api/interpreter',
-    'https://overpass.kumi.systems/api/interpreter',
+    'https://lz4.overpass-api.de/api/interpreter',
   ];
+  static const _retryRounds = 3;
 
   /// Downloads natural features for the bounding box and stores them as Spots.
   /// No-ops if any Spots already exist.
@@ -31,21 +33,26 @@ out center;
 
     http.Response? response;
     Object? lastError;
-    for (final mirror in _overpassMirrors) {
-      try {
-        response = await http
-            .post(Uri.parse(mirror), body: {'data': query})
-            .timeout(const Duration(seconds: 30));
-        if (response.statusCode == 200) break;
-        lastError = 'HTTP ${response.statusCode} from ${Uri.parse(mirror).host}';
-        response = null;
-      } catch (e) {
-        lastError = e;
-        response = null;
+    outer:
+    for (var round = 0; round < _retryRounds; round++) {
+      if (round > 0) await Future.delayed(Duration(seconds: 2 * round));
+      for (final mirror in _overpassMirrors) {
+        try {
+          response = await http
+              .post(Uri.parse(mirror), body: {'data': query})
+              .timeout(const Duration(seconds: 30));
+          if (response.statusCode == 200) break outer;
+          lastError =
+              'HTTP ${response.statusCode} from ${Uri.parse(mirror).host}';
+          response = null;
+        } catch (e) {
+          lastError = e;
+          response = null;
+        }
       }
     }
     if (response == null) {
-      throw Exception('OSM download failed: $lastError');
+      throw Exception('OSM download failed after retries: $lastError');
     }
 
     final elements = (jsonDecode(response.body)['elements'] as List)
