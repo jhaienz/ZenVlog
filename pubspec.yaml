@@ -26,9 +26,9 @@ dependencies:
   # Bluetooth
   flutter_blue_plus: ^1.32.12
   # Audio
-  record: ^5.1.2
-  # ML
-  tflite_flutter: ^0.10.4
+  record: ^6.1.1
+  # ML: tflite_flutter re-added in Phase 4 — its TF 2.12 AARs have duplicate
+  # namespaces that AGP 9 rejects; use a fixed release or LiteRT then.
   # Community (initialized Phase 6 only)
   supabase_flutter: ^2.5.6
   # Sensors
