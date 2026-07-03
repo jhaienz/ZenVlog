@@ -38,6 +38,7 @@ dependencies:
   # Code gen helpers
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
+  http: ^1.6.0
 
 dev_dependencies:
   flutter_test:
