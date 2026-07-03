@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
+import '../../app/router.dart';
 import '../../core/maps/tile_cache_manager.dart';
 import '../persona/persona_provider.dart';
 import 'osm_downloader.dart';
@@ -145,6 +147,8 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                   spot: _spots[i],
                   onTap: () => _mapController.move(
                       LatLng(_spots[i].lat, _spots[i].lng), 15),
+                  onGo: () =>
+                      context.push(kJourneyActiveRoute, extra: _spots[i]),
                 ),
               ),
             ),
@@ -155,7 +159,8 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
 class _SpotCard extends StatelessWidget {
   final Spot spot;
   final VoidCallback onTap;
-  const _SpotCard({required this.spot, required this.onTap});
+  final VoidCallback onGo;
+  const _SpotCard({required this.spot, required this.onTap, required this.onGo});
 
   @override
   Widget build(BuildContext context) {
@@ -182,9 +187,20 @@ class _SpotCard extends StatelessWidget {
                   style:
                       const TextStyle(fontSize: 12, color: Color(0xFF1A3A2A))),
               const SizedBox(height: 4),
-              Text('Match: ${spot.personaScore.toStringAsFixed(2)}',
-                  style:
-                      const TextStyle(fontSize: 11, color: Color(0xFFD4A853))),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Match: ${spot.personaScore.toStringAsFixed(2)}',
+                      style: const TextStyle(
+                          fontSize: 11, color: Color(0xFFD4A853))),
+                  const SizedBox(width: 12),
+                  GestureDetector(
+                    onTap: onGo,
+                    child: const Icon(Icons.arrow_circle_right,
+                        color: Color(0xFF1A3A2A), size: 22),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
