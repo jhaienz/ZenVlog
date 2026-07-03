@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../core/auth/auth_service.dart';
+import '../features/auth/sign_in_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/explore/explore_screen.dart';
 import '../features/journal/journal_screen.dart';
 import '../features/profile/profile_screen.dart';
 
+const kSignInRoute = '/signin';
 const kHomeRoute = '/';
 const kExploreRoute = '/explore';
 const kJournalRoute = '/journal';
@@ -18,7 +21,15 @@ const _tabRoutes = [kHomeRoute, kExploreRoute, kJournalRoute, kProfileRoute];
 
 final router = GoRouter(
   initialLocation: kHomeRoute,
+  redirect: (context, state) {
+    final signedIn = AuthService.isSignedIn;
+    final onSignIn = state.matchedLocation == kSignInRoute;
+    if (!signedIn && !onSignIn) return kSignInRoute;
+    if (signedIn && onSignIn) return kHomeRoute;
+    return null;
+  },
   routes: [
+    GoRoute(path: kSignInRoute, builder: (_, __) => const SignInScreen()),
     ShellRoute(
       builder: (context, state, child) => _NavShell(child: child),
       routes: [

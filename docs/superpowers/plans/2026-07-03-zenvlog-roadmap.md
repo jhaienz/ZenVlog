@@ -14,8 +14,8 @@
 - Minimum Dart SDK: 3.4.0
 - Target: iOS 16+ and Android API 26+
 - Package name: `com.zenvlog.app`
-- No Supabase client initialized before Phase 6
-- No data sent to any server before Phase 6 (except OSM tile downloads)
+- Supabase Auth on first launch (ADR-0007); the Supabase user id is the user's identity everywhere — replace any `LocalIdentity` references in phase plans
+- No personal data (persona, journeys, journal) sent to any server in any phase; only feed posts (Phase 6) touch Supabase tables
 - All Isar models annotated with `@collection`
 - All Riverpod providers use code generation (`@riverpod` annotation)
 - go_router routes defined as `GoRoute` constants, not inline strings

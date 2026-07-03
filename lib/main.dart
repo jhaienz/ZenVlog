@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app/router.dart';
 import 'app/theme.dart';
-import 'core/identity/local_identity.dart';
+import 'core/auth/auth_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Isar opens in Phase 2 when the first collection schema exists.
-  await LocalIdentity.getOrCreate();
+  await AuthService.initialize();
   runApp(const ProviderScope(child: _App()));
 }
 

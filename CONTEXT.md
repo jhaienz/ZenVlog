@@ -1,6 +1,6 @@
 # ZenVlog
 
-A privacy-first outdoor mindfulness app. All personal data lives on-device. Users move between three modes — Solo, Group, and Community — within a single account-optional identity model.
+A privacy-first outdoor mindfulness app. All personal data lives on-device. Users move between three modes — Solo, Group, and Community — under a single Account created at first launch.
 
 ## Language
 
@@ -10,13 +10,9 @@ A privacy-first outdoor mindfulness app. All personal data lives on-device. User
 One of three states a user operates in: Solo (offline, private), Group (offline, BLE-coordinated), or Community (online, social). A single user can move between all three; modes are not roles.
 _Avoid_: Role, state, view, user type
 
-**Local Identity**:
-A UUID generated on first launch that identifies the user on-device. No account required. Upgraded to a Community Account only when the user opts into the feed.
-_Avoid_: Anonymous user, guest, device ID
-
-**Community Account**:
-A Supabase-backed identity created only when the user first posts to or browses the community feed. Holds no journey, persona, or journal data.
-_Avoid_: Account, user account, profile
+**Account**:
+The Supabase-backed identity created via email sign-in on first launch. The single user id across all three modes. Holds credentials and published feed posts only — never journey, persona, or journal data.
+_Avoid_: Local identity, community account, profile, user account
 
 ### Persona & Discovery
 
