@@ -27,12 +27,12 @@ dependencies:
   flutter_blue_plus: ^1.32.12
   # Audio
   record: ^6.1.1
-  # ML: tflite_flutter re-added in Phase 4 — its TF 2.12 AARs have duplicate
-  # namespaces that AGP 9 rejects; use a fixed release or LiteRT then.
+  # ML: no TFLite — persona learning is a plain Dart EMA rule (the planned
+  # model was trained on synthetic data mimicking exactly that rule).
   # Community (initialized Phase 6 only)
   supabase_flutter: ^2.5.6
   # Sensors
-  sensors_plus: ^4.0.2
+  sensors_plus: ^6.1.1
   # Location
   location: ^6.0.2
   # Code gen helpers
@@ -55,3 +55,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/tasks/library.json
+    - assets/hazards/hazard_zones.geojson

@@ -1,0 +1,13 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "type": "flood_zone", "severity": "warning", "name": "Bicol River flood plain — low-lying, floods in heavy rain" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[123.10, 13.55], [123.25, 13.55], [123.25, 13.65], [123.10, 13.65], [123.10, 13.55]]]
+      }
+    }
+  ]
+}
