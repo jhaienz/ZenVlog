@@ -5,7 +5,11 @@ import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import '../../app/router.dart';
 import '../../core/maps/tile_cache_manager.dart';
+import '../anshin/anshin_alert.dart';
+import '../anshin/anshin_engine.dart';
+import '../anshin/hazard_overlay.dart';
 import '../explore/spot.dart';
+import '../persona/persona_provider.dart';
 import 'journey.dart';
 import 'journey_provider.dart';
 
@@ -32,7 +36,11 @@ class JourneyScreen extends ConsumerWidget {
           if (journey != null)
             TextButton(
               onPressed: () async {
-                await ref.read(journeyNotifierProvider.notifier).end();
+                final ended =
+                    await ref.read(journeyNotifierProvider.notifier).end();
+                await ref
+                    .read(personaNotifierProvider.notifier)
+                    .recordCompletedJourney(ended);
                 if (context.mounted) context.go(kJournalRoute);
               },
               child: const Text('End',
@@ -42,6 +50,7 @@ class JourneyScreen extends ConsumerWidget {
       ),
       body: Column(
         children: [
+          _AnshinBanner(lat: spot.lat, lng: spot.lng),
           Expanded(
             child: FlutterMap(
               options: MapOptions(
@@ -50,6 +59,11 @@ class JourneyScreen extends ConsumerWidget {
               ),
               children: [
                 osmTileLayer(),
+                FutureBuilder(
+                  future: HazardOverlay.buildLayer(),
+                  builder: (_, snap) =>
+                      snap.data ?? const SizedBox.shrink(),
+                ),
                 if (trackPoints.length >= 2)
                   PolylineLayer(polylines: [
                     Polyline(
@@ -83,6 +97,36 @@ class JourneyScreen extends ConsumerWidget {
               label: const Text('Get Task'),
               icon: const Icon(Icons.assignment),
             ),
+    );
+  }
+}
+
+class _AnshinBanner extends ConsumerWidget {
+  final double lat, lng;
+  const _AnshinBanner({required this.lat, required this.lng});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final alerts = ref.watch(anshinAlertsProvider(lat, lng)).value ?? [];
+    if (alerts.isEmpty) return const SizedBox.shrink();
+    final worst = alerts
+        .reduce((a, b) => a.severity.index > b.severity.index ? a : b);
+    return Container(
+      width: double.infinity,
+      color: worst.severity == AlertSeverity.danger
+          ? Colors.red[900]
+          : Colors.orange[900],
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      child: Row(
+        children: [
+          const Icon(Icons.warning_amber, color: Colors.white, size: 20),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(worst.message,
+                style: const TextStyle(color: Colors.white, fontSize: 13)),
+          ),
+        ],
+      ),
     );
   }
 }

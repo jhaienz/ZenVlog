@@ -7,6 +7,7 @@ import 'package:location/location.dart';
 import '../../app/router.dart';
 import '../../core/app_env.dart';
 import '../../core/maps/tile_cache_manager.dart';
+import '../anshin/forecast_cache.dart';
 import '../persona/persona_provider.dart';
 import 'dev_seed.dart';
 import 'osm_downloader.dart';
@@ -96,6 +97,32 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
     }
   }
 
+  Future<void> _startJourney(Spot spot) async {
+    final cached = await ForecastCache.getCached();
+    final needsDownload =
+        cached == null || ForecastCache.isStale(cached.cachedAt);
+    if (needsDownload && mounted) {
+      final download = await showDialog<bool>(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          title: const Text('Download Safety Data'),
+          content: const Text(
+              'Download the latest weather forecast before going offline?'),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(dialogContext, false),
+                child: const Text('Skip')),
+            ElevatedButton(
+                onPressed: () => Navigator.pop(dialogContext, true),
+                child: const Text('Download')),
+          ],
+        ),
+      );
+      if (download == true) await ForecastCache.download(spot.lat, spot.lng);
+    }
+    if (mounted) context.push(kJourneyActiveRoute, extra: spot);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -180,8 +207,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                   spot: _spots[i],
                   onTap: () => _mapController.move(
                       LatLng(_spots[i].lat, _spots[i].lng), 15),
-                  onGo: () =>
-                      context.push(kJourneyActiveRoute, extra: _spots[i]),
+                  onGo: () => _startJourney(_spots[i]),
                 ),
               ),
             ),

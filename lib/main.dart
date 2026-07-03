@@ -6,6 +6,7 @@ import 'app/theme.dart';
 import 'core/auth/auth_service.dart';
 import 'core/db/isar_service.dart';
 import 'core/maps/tile_cache_manager.dart';
+import 'features/anshin/forecast_cache.dart';
 import 'features/explore/spot.dart';
 import 'features/journal/journal_entry.dart';
 import 'features/journey/journey.dart';
@@ -17,8 +18,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AuthService.initialize();
   await initTileCache();
-  final isar = await IsarService.open(
-      [PersonaSchema, SpotSchema, JourneySchema, TaskSchema, JournalEntrySchema]);
+  final isar = await IsarService.open([
+    PersonaSchema,
+    SpotSchema,
+    JourneySchema,
+    TaskSchema,
+    JournalEntrySchema,
+    CachedForecastSchema,
+  ]);
   OnboardingGate.needed = await isar.personas.where().anyId().findFirst() == null;
   runApp(const ProviderScope(child: _App()));
 }
