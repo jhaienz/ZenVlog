@@ -4,14 +4,16 @@ import '../../core/db/isar_service.dart';
 import 'spot.dart';
 
 class OsmDownloader {
-  // Overpass API — free, no key required. Same-domain endpoints only:
-  // third-party mirrors (kumi.systems etc.) fail DNS on some ISPs.
+  // Overpass API — free, no key required. Instances on distinct domains /
+  // infrastructure so a single ISP DNS failure can't take them all out.
   // overpass-api.de intermittently refuses (406/429), so we retry rounds.
   static const _overpassMirrors = [
     'https://overpass-api.de/api/interpreter',
+    'https://overpass.openstreetmap.fr/api/interpreter',
+    'https://maps.mail.ru/osm/tools/overpass/api/interpreter',
     'https://lz4.overpass-api.de/api/interpreter',
   ];
-  static const _retryRounds = 3;
+  static const _retryRounds = 2;
 
   /// Downloads natural features for the bounding box and stores them as Spots.
   /// No-ops if any Spots already exist.
