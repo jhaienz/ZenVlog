@@ -1,26 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'persona_provider.dart';
+part of 'group_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$personaNotifierHash() => r'5c370988a7ca4fb6ac0793565680cd5bfaad4e45';
+String _$groupNotifierHash() => r'2447b0e33da8e26be8eb179edd67e7d23afb43b6';
 
-/// See also [PersonaNotifier].
-@ProviderFor(PersonaNotifier)
-final personaNotifierProvider =
-    AutoDisposeAsyncNotifierProvider<PersonaNotifier, Persona?>.internal(
-  PersonaNotifier.new,
-  name: r'personaNotifierProvider',
+/// See also [GroupNotifier].
+@ProviderFor(GroupNotifier)
+final groupNotifierProvider =
+    AutoDisposeNotifierProvider<GroupNotifier, Group?>.internal(
+  GroupNotifier.new,
+  name: r'groupNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$personaNotifierHash,
+      : _$groupNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$PersonaNotifier = AutoDisposeAsyncNotifier<Persona?>;
+typedef _$GroupNotifier = AutoDisposeNotifier<Group?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
