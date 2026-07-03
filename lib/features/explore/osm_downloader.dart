@@ -66,11 +66,11 @@ out center;
     if (responseBody == null && sawDnsFailure) {
       const host = 'overpass-api.de';
       try {
-        final ip = await DohClient.resolve(host);
-        responseBody = await DohClient.postViaIp(
+        final ips = await DohClient.resolveAll(host);
+        responseBody = await DohClient.post(
           host: host,
           path: '/api/interpreter',
-          ip: ip,
+          ips: ips,
           formBody: {'data': query},
         );
       } catch (e) {

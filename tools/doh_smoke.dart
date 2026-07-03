@@ -5,12 +5,12 @@ import 'dart:io' show exit;
 import 'package:app/core/net/doh_client.dart';
 
 void main() async {
-  final ip = await DohClient.resolve('overpass-api.de');
-  print('resolved: $ip');
-  final body = await DohClient.postViaIp(
+  final ips = await DohClient.resolveAll('overpass-api.de');
+  print('resolved: $ips');
+  final body = await DohClient.post(
     host: 'overpass-api.de',
     path: '/api/interpreter',
-    ip: ip,
+    ips: ips,
     formBody: {
       'data':
           '[out:json][timeout:10];node["natural"="peak"](13.6,123.1,13.62,123.12);out;'
