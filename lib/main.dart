@@ -5,13 +5,16 @@ import 'app/router.dart';
 import 'app/theme.dart';
 import 'core/auth/auth_service.dart';
 import 'core/db/isar_service.dart';
+import 'core/maps/tile_cache_manager.dart';
+import 'features/explore/spot.dart';
 import 'features/onboarding/onboarding_gate.dart';
 import 'features/persona/persona.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AuthService.initialize();
-  final isar = await IsarService.open([PersonaSchema]);
+  await initTileCache();
+  final isar = await IsarService.open([PersonaSchema, SpotSchema]);
   OnboardingGate.needed = await isar.personas.where().anyId().findFirst() == null;
   runApp(const ProviderScope(child: _App()));
 }

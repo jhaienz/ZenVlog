@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:isar/isar.dart';
 import '../../core/db/isar_service.dart';
 import 'spot.dart';
 
