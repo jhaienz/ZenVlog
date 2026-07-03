@@ -4,8 +4,12 @@ import '../../core/db/isar_service.dart';
 import 'spot.dart';
 
 class OsmDownloader {
-  // Overpass API — free, no key required
-  static const _overpassUrl = 'https://overpass-api.de/api/interpreter';
+  // Overpass API — free, no key required. Mirrors tried in order;
+  // overpass-api.de rate-limits (429) aggressively.
+  static const _overpassMirrors = [
+    'https://overpass-api.de/api/interpreter',
+    'https://overpass.kumi.systems/api/interpreter',
+  ];
 
   /// Downloads natural features for the bounding box and stores them as Spots.
   /// No-ops if any Spots already exist.
@@ -25,12 +29,23 @@ class OsmDownloader {
 out center;
 ''';
 
-    final response = await http.post(
-      Uri.parse(_overpassUrl),
-      body: {'data': query},
-    );
-    if (response.statusCode != 200) {
-      throw Exception('OSM download failed: ${response.statusCode}');
+    http.Response? response;
+    Object? lastError;
+    for (final mirror in _overpassMirrors) {
+      try {
+        response = await http
+            .post(Uri.parse(mirror), body: {'data': query})
+            .timeout(const Duration(seconds: 30));
+        if (response.statusCode == 200) break;
+        lastError = 'HTTP ${response.statusCode} from ${Uri.parse(mirror).host}';
+        response = null;
+      } catch (e) {
+        lastError = e;
+        response = null;
+      }
+    }
+    if (response == null) {
+      throw Exception('OSM download failed: $lastError');
     }
 
     final elements = (jsonDecode(response.body)['elements'] as List)

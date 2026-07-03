@@ -73,7 +73,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
         );
         spots = await SerendipityScraper.findHiddenSpots(persona);
       } catch (e) {
-        if (mounted) setState(() => _error = 'Could not load spots: offline?');
+        if (mounted) setState(() => _error = '$e');
       }
     }
     if (mounted) {
@@ -128,8 +128,29 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                   color: Colors.orange[100],
                   child: Padding(
                     padding: const EdgeInsets.all(12),
-                    child: Text(_error!,
-                        style: const TextStyle(color: Color(0xFF1A3A2A))),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          width: 280,
+                          child: Text(_error!,
+                              maxLines: 4,
+                              overflow: TextOverflow.ellipsis,
+                              style:
+                                  const TextStyle(color: Color(0xFF1A3A2A))),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            setState(() {
+                              _error = null;
+                              _loading = true;
+                            });
+                            _loadSpots();
+                          },
+                          child: const Text('Retry'),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
