@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import '../features/home/home_screen.dart';
+import '../features/explore/explore_screen.dart';
+import '../features/journal/journal_screen.dart';
+import '../features/profile/profile_screen.dart';
+
+const kHomeRoute = '/';
+const kExploreRoute = '/explore';
+const kJournalRoute = '/journal';
+const kProfileRoute = '/profile';
+const kOnboardingRoute = '/onboarding';
+const kJourneyActiveRoute = '/journey/active';
+const kGroupRoute = '/group';
+const kCommunityRoute = '/community';
+
+const _tabRoutes = [kHomeRoute, kExploreRoute, kJournalRoute, kProfileRoute];
+
+final router = GoRouter(
+  initialLocation: kHomeRoute,
+  routes: [
+    ShellRoute(
+      builder: (context, state, child) => _NavShell(child: child),
+      routes: [
+        GoRoute(path: kHomeRoute, builder: (_, __) => const HomeScreen()),
+        GoRoute(path: kExploreRoute, builder: (_, __) => const ExploreScreen()),
+        GoRoute(path: kJournalRoute, builder: (_, __) => const JournalScreen()),
+        GoRoute(path: kProfileRoute, builder: (_, __) => const ProfileScreen()),
+      ],
+    ),
+  ],
+);
+
+class _NavShell extends StatelessWidget {
+  final Widget child;
+  const _NavShell({required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    final location = GoRouterState.of(context).matchedLocation;
+    return Scaffold(
+      body: child,
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _indexFor(location),
+        onTap: (i) => context.go(_tabRoutes[i]),
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.explore_outlined), activeIcon: Icon(Icons.explore), label: 'Explore'),
+          BottomNavigationBarItem(icon: Icon(Icons.book_outlined), activeIcon: Icon(Icons.book), label: 'Journal'),
+          BottomNavigationBarItem(icon: Icon(Icons.person_outlined), activeIcon: Icon(Icons.person), label: 'Profile'),
+        ],
+      ),
+    );
+  }
+
+  int _indexFor(String location) {
+    if (location.startsWith(kExploreRoute)) return 1;
+    if (location.startsWith(kJournalRoute)) return 2;
+    if (location.startsWith(kProfileRoute)) return 3;
+    return 0;
+  }
+}
