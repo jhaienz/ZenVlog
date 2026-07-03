@@ -10,6 +10,7 @@ import '../features/explore/spot.dart';
 import '../features/journal/journal_screen.dart';
 import '../features/journey/journey_screen.dart';
 import '../features/profile/profile_screen.dart';
+import '../features/profile/settings_screen.dart';
 import '../features/tasks/task_screen.dart';
 
 const kSignInRoute = '/signin';
@@ -22,6 +23,7 @@ const kJourneyActiveRoute = '/journey/active';
 const kTaskRoute = '/task';
 const kGroupRoute = '/group';
 const kCommunityRoute = '/community';
+const kSettingsRoute = '/settings';
 
 const _tabRoutes = [kHomeRoute, kExploreRoute, kJournalRoute, kProfileRoute];
 
@@ -49,6 +51,7 @@ final router = GoRouter(
       path: kTaskRoute,
       builder: (context, state) => TaskScreen(spot: state.extra! as Spot),
     ),
+    GoRoute(path: kSettingsRoute, builder: (_, __) => const SettingsScreen()),
     ShellRoute(
       builder: (context, state, child) => _NavShell(child: child),
       routes: [

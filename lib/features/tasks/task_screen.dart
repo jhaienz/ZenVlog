@@ -7,6 +7,7 @@ import '../explore/spot.dart';
 import '../journal/journal_provider.dart';
 import '../journey/journey_provider.dart';
 import '../persona/persona_provider.dart';
+import 'llm_rewriter.dart';
 import 'task.dart';
 import 'task_provider.dart';
 import 'task_template.dart';
@@ -52,6 +53,7 @@ class _TaskScreenState extends ConsumerState<TaskScreen> {
             ? _SuggestionList(templates: templates, onSelect: _accept)
             : _TaskInProgress(
                 template: _selected!,
+                spotName: widget.spot.name,
                 elapsed: _elapsed,
                 inProgress: _inProgress,
                 onStart: _startTask,
@@ -146,12 +148,14 @@ class _SuggestionList extends StatelessWidget {
 
 class _TaskInProgress extends StatelessWidget {
   final TaskTemplate template;
+  final String spotName;
   final int elapsed;
   final bool inProgress;
   final VoidCallback onStart;
   final VoidCallback onComplete;
   const _TaskInProgress({
     required this.template,
+    required this.spotName,
     required this.elapsed,
     required this.inProgress,
     required this.onStart,
@@ -174,7 +178,15 @@ class _TaskInProgress extends StatelessWidget {
                 style:
                     const TextStyle(color: Color(0xFFD4A853), fontSize: 24)),
             const SizedBox(height: 16),
-            Text(template.description, textAlign: TextAlign.center),
+            FutureBuilder<String>(
+              future: LlmRewriter.rewrite(
+                template,
+                spotName: spotName,
+                timeOfDay: DateTime.now().hour < 12 ? 'morning' : 'afternoon',
+              ),
+              builder: (_, snap) => Text(snap.data ?? template.description,
+                  textAlign: TextAlign.center),
+            ),
             const SizedBox(height: 24),
             if (inProgress)
               const Text('Take a deep breath. Let the sounds around you emerge.',
