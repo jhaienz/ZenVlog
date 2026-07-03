@@ -31,6 +31,11 @@ Secondary (AI-focused) nav: **Journeys · AI Engine · Explore · Community · P
 
 Dark forest-green primary (`~#1a3a2a`), cream/beige content cards, amber/gold accents. Nature photography as hero imagery. Minimalist iconography.
 
+## Domain Model & Decisions
+
+- `CONTEXT.md` — canonical glossary (Persona, Journey, Hidden Spot, Task, Anshin Engine, etc.). Use these terms exactly; see _Avoid_ lists for banned synonyms.
+- `docs/adr/` — 6 ADRs covering the non-obvious architectural decisions. Read before touching identity, safety, spot discovery, group sync, tasks, or backup.
+
 ## Architecture Constraints
 
 - All AI/ML inference must run on-device (no server calls for persona or recommendations).
