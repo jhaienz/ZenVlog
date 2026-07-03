@@ -234,6 +234,10 @@ Phase 1 (Foundation)
                if two engineers are available
 ```
 
+## Per-Phase Results
+
+Every phase ends by writing `docs/results/phase-N-<name>.md`: what was implemented (component → file table), test results, deviations from plan, and known ceilings. Phases 1–3 are done; do the same for 4–6.
+
 ## Per-Phase Detailed Plans
 
 Each phase gets its own plan written immediately before implementation begins. Do not write Phase N+1's detailed plan until Phase N is tested and merged — requirements shift.
