@@ -5,8 +5,10 @@ import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 import '../../app/router.dart';
+import '../../core/app_env.dart';
 import '../../core/maps/tile_cache_manager.dart';
 import '../persona/persona_provider.dart';
+import 'dev_seed.dart';
 import 'osm_downloader.dart';
 import 'serendipity_scraper.dart';
 import 'spot.dart';
@@ -73,7 +75,17 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
         );
         spots = await SerendipityScraper.findHiddenSpots(persona);
       } catch (e) {
-        if (mounted) setState(() => _error = '$e');
+        if (isDev) {
+          // Device network broken? Seed fake spots so the journey loop
+          // stays testable. Prod shows the real error.
+          await DevSeed.seedAround(_center.latitude, _center.longitude);
+          spots = await SerendipityScraper.findHiddenSpots(persona);
+          if (mounted) {
+            setState(() => _error = 'Offline — seeded dev spots');
+          }
+        } else if (mounted) {
+          setState(() => _error = '$e');
+        }
       }
     }
     if (mounted) {
