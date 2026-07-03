@@ -3,9 +3,17 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  app_links
+  flutter_secure_storage_windows
+  isar_flutter_libs
+  objectbox_flutter_libs
+  record_windows
+  url_launcher_windows
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
+  jni
+  tflite_flutter
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)
