@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
 import '../../core/db/isar_service.dart';
+import '../../core/net/doh_client.dart';
 import 'spot.dart';
 
 class OsmDownloader {
@@ -33,31 +35,54 @@ class OsmDownloader {
 out center;
 ''';
 
-    http.Response? response;
+    String? responseBody;
     Object? lastError;
+    var sawDnsFailure = false;
     outer:
     for (var round = 0; round < _retryRounds; round++) {
       if (round > 0) await Future.delayed(Duration(seconds: 2 * round));
       for (final mirror in _overpassMirrors) {
         try {
-          response = await http
+          final response = await http
               .post(Uri.parse(mirror), body: {'data': query})
               .timeout(const Duration(seconds: 30));
-          if (response.statusCode == 200) break outer;
+          if (response.statusCode == 200) {
+            responseBody = response.body;
+            break outer;
+          }
           lastError =
               'HTTP ${response.statusCode} from ${Uri.parse(mirror).host}';
-          response = null;
+        } on SocketException catch (e) {
+          sawDnsFailure = true;
+          lastError = e;
         } catch (e) {
           lastError = e;
-          response = null;
         }
       }
     }
-    if (response == null) {
+
+    // Carrier DNS blocks overpass domains on some networks (browser works
+    // via its own DoH). Resolve via 1.1.1.1 and connect by IP.
+    if (responseBody == null && sawDnsFailure) {
+      const host = 'overpass-api.de';
+      try {
+        final ip = await DohClient.resolve(host);
+        responseBody = await DohClient.postViaIp(
+          host: host,
+          path: '/api/interpreter',
+          ip: ip,
+          formBody: {'data': query},
+        );
+      } catch (e) {
+        lastError = 'DoH fallback: $e (direct: $lastError)';
+      }
+    }
+
+    if (responseBody == null) {
       throw Exception('OSM download failed after retries: $lastError');
     }
 
-    final elements = (jsonDecode(response.body)['elements'] as List)
+    final elements = (jsonDecode(responseBody)['elements'] as List)
         .cast<Map<String, dynamic>>();
     final spots = elements.map(_toSpot).whereType<Spot>().toList();
 
