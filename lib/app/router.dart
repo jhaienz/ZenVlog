@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../core/auth/auth_service.dart';
 import '../features/auth/sign_in_screen.dart';
+import '../features/onboarding/onboarding_gate.dart';
+import '../features/onboarding/onboarding_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/explore/explore_screen.dart';
 import '../features/journal/journal_screen.dart';
@@ -24,12 +26,16 @@ final router = GoRouter(
   redirect: (context, state) {
     final signedIn = AuthService.isSignedIn;
     final onSignIn = state.matchedLocation == kSignInRoute;
+    final onOnboarding = state.matchedLocation == kOnboardingRoute;
     if (!signedIn && !onSignIn) return kSignInRoute;
     if (signedIn && onSignIn) return kHomeRoute;
+    if (signedIn && OnboardingGate.needed && !onOnboarding) return kOnboardingRoute;
+    if (signedIn && !OnboardingGate.needed && onOnboarding) return kHomeRoute;
     return null;
   },
   routes: [
     GoRoute(path: kSignInRoute, builder: (_, __) => const SignInScreen()),
+    GoRoute(path: kOnboardingRoute, builder: (_, __) => const OnboardingScreen()),
     ShellRoute(
       builder: (context, state, child) => _NavShell(child: child),
       routes: [

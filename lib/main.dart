@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:isar/isar.dart';
 import 'app/router.dart';
 import 'app/theme.dart';
 import 'core/auth/auth_service.dart';
+import 'core/db/isar_service.dart';
+import 'features/onboarding/onboarding_gate.dart';
+import 'features/persona/persona.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Isar opens in Phase 2 when the first collection schema exists.
   await AuthService.initialize();
+  final isar = await IsarService.open([PersonaSchema]);
+  OnboardingGate.needed = await isar.personas.where().anyId().findFirst() == null;
   runApp(const ProviderScope(child: _App()));
 }
 

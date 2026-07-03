@@ -3,11 +3,23 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:app/app/router.dart';
 import 'package:app/app/theme.dart';
 import 'package:app/core/auth/auth_service.dart';
+import 'package:app/features/onboarding/onboarding_gate.dart';
 
 void main() {
   Widget app() => MaterialApp.router(theme: zenvlogTheme, routerConfig: router);
 
+  setUp(() => OnboardingGate.needed = false);
   tearDown(() => AuthService.debugSignedInOverride = null);
+
+  testWidgets('signed-in user without persona is redirected to onboarding', (tester) async {
+    AuthService.debugSignedInOverride = true;
+    OnboardingGate.needed = true;
+    await tester.pumpWidget(app());
+    await tester.pumpAndSettle();
+
+    expect(find.text('Design your mindful adventure'), findsOneWidget);
+    expect(find.byType(BottomNavigationBar), findsNothing);
+  });
 
   testWidgets('unauthenticated user is redirected to sign-in', (tester) async {
     AuthService.debugSignedInOverride = false;

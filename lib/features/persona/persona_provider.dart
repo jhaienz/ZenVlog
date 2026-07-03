@@ -1,3 +1,4 @@
+import 'package:isar/isar.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../core/db/isar_service.dart';
 import '../onboarding/onboarding_gate.dart';
@@ -9,7 +10,7 @@ class PersonaNotifier extends _$PersonaNotifier {
   @override
   Future<Persona?> build() async {
     final isar = IsarService.instance;
-    return isar.personas.where().findFirst();
+    return isar.personas.where().anyId().findFirst();
   }
 
   Future<void> save(Persona persona) async {
@@ -20,10 +21,5 @@ class PersonaNotifier extends _$PersonaNotifier {
     });
     OnboardingGate.needed = false;
     state = AsyncData(persona);
-  }
-
-  Future<void> update(Persona updated) async {
-    updated.updatedAt = DateTime.now();
-    await save(updated);
   }
 }
