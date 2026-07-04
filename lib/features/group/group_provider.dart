@@ -30,7 +30,27 @@ class GroupNotifier extends _$GroupNotifier {
       mergedPersona: Group.computeMergedPersona([me]),
       status: GroupStatus.forming,
     );
-    await BleTransport.startAdvertising(myId);
+    try {
+      await BleTransport.startAdvertising(
+        myId,
+        groupStateJson: () => state?.encodeState() ?? '{}',
+        onJoinRequest: approveMember,
+      );
+    } on Exception {
+      // Bluetooth off / unsupported: group still works locally
+      // (dev test members); advertising just isn't on the air.
+    }
+  }
+
+  /// Member side: join a discovered host. Local state becomes the host's
+  /// snapshot plus us (host adds us on its side via the join write).
+  Future<void> joinGroup(String deviceId) async {
+    final myPersona = await ref.read(personaNotifierProvider.future);
+    if (myPersona == null) return;
+    final me = MemberPersona(
+        userId: AuthService.userId, displayName: 'You', persona: myPersona);
+    final hostGroup = await BleTransport.joinGroup(deviceId, me);
+    state = hostGroup.copyWith(members: [...hostGroup.members, me]);
   }
 
   void approveMember(MemberPersona newMember) {

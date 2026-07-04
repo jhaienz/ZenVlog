@@ -41,6 +41,7 @@ dependencies:
   http: ^1.6.0
   latlong2: ^0.9.1
   image_picker: ^1.2.3
+  bluetooth_low_energy: ^6.2.1
 
 dev_dependencies:
   flutter_test:

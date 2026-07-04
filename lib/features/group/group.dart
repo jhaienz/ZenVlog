@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 import '../persona/persona.dart';
 
@@ -12,6 +13,32 @@ class MemberPersona {
     required this.displayName,
     required this.persona,
   });
+
+  /// Wire codec for BLE join requests and group-state sync.
+  Map<String, dynamic> toJson() => {
+        'userId': userId,
+        'displayName': displayName,
+        'persona': persona.vector,
+      };
+
+  factory MemberPersona.fromJson(Map<String, dynamic> j) {
+    final v = (j['persona'] as List).cast<num>();
+    return MemberPersona(
+      userId: j['userId'] as String,
+      displayName: j['displayName'] as String,
+      persona: Persona.fromSliders(
+        stamina: v[0].toDouble(),
+        curiosity: v[1].toDouble(),
+        solitudeNeed: v[2].toDouble(),
+        natureAffinity: v[3].toDouble(),
+        culturalAffinity: v[4].toDouble(),
+      ),
+    );
+  }
+
+  String encode() => jsonEncode(toJson());
+  static MemberPersona decode(String s) =>
+      MemberPersona.fromJson(jsonDecode(s) as Map<String, dynamic>);
 }
 
 /// A temporary 2–6 person party connected during a shared Journey.
@@ -58,6 +85,26 @@ class Group {
       solitudeNeed: minOf((p) => p.solitudeNeed),
       natureAffinity: avgOf((p) => p.natureAffinity),
       culturalAffinity: minOf((p) => p.culturalAffinity),
+    );
+  }
+
+  /// Wire codec: full group state served over the BLE state characteristic.
+  String encodeState() => jsonEncode({
+        'hostId': hostId,
+        'status': status.name,
+        'members': members.map((m) => m.toJson()).toList(),
+      });
+
+  static Group decodeState(String s) {
+    final j = jsonDecode(s) as Map<String, dynamic>;
+    final members = (j['members'] as List)
+        .map((e) => MemberPersona.fromJson(e as Map<String, dynamic>))
+        .toList();
+    return Group(
+      hostId: j['hostId'] as String,
+      members: members,
+      mergedPersona: computeMergedPersona(members),
+      status: GroupStatus.values.byName(j['status'] as String),
     );
   }
 

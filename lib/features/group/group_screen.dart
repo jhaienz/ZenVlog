@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../app/router.dart';
 import '../../core/app_env.dart';
+import 'ble_transport.dart';
 import 'group.dart';
 import 'group_provider.dart';
 
@@ -42,9 +44,101 @@ class _NoGroupView extends ConsumerWidget {
                 icon: const Icon(Icons.group_add),
                 label: const Text('Start Group'),
               ),
+              const SizedBox(height: 8),
+              TextButton.icon(
+                onPressed: () => showDialog(
+                  context: context,
+                  builder: (_) => const _JoinGroupDialog(),
+                ),
+                icon: const Icon(Icons.search),
+                label: const Text('Join a Group nearby'),
+              ),
             ],
           ),
         ),
+      );
+}
+
+class _JoinGroupDialog extends ConsumerStatefulWidget {
+  const _JoinGroupDialog();
+  @override
+  ConsumerState<_JoinGroupDialog> createState() => _JoinGroupDialogState();
+}
+
+class _JoinGroupDialogState extends ConsumerState<_JoinGroupDialog> {
+  final _found = <({String hostId, String deviceId})>[];
+  StreamSubscription? _sub;
+  String? _error;
+
+  @override
+  void initState() {
+    super.initState();
+    _sub = BleTransport.scanForGroups().listen(
+      (host) {
+        if (_found.any((f) => f.deviceId == host.deviceId)) return;
+        setState(() => _found.add(host));
+      },
+      onError: (Object e) => setState(() => _error = '$e'),
+    );
+  }
+
+  @override
+  void dispose() {
+    _sub?.cancel();
+    BleTransport.stopScan();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => AlertDialog(
+        title: const Text('Nearby groups'),
+        content: SizedBox(
+          width: double.maxFinite,
+          height: 200,
+          child: _error != null
+              ? Center(child: Text('Scan failed: $_error'))
+              : _found.isEmpty
+                  ? const Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircularProgressIndicator(),
+                          SizedBox(height: 12),
+                          Text('Scanning for hosts…',
+                              style: TextStyle(fontSize: 12)),
+                        ],
+                      ),
+                    )
+                  : ListView(
+                      children: [
+                        for (final host in _found)
+                          ListTile(
+                            leading: const Icon(Icons.bluetooth,
+                                color: Color(0xFFD4A853)),
+                            title: Text('Group of ${host.hostId}'),
+                            onTap: () async {
+                              try {
+                                await ref
+                                    .read(groupNotifierProvider.notifier)
+                                    .joinGroup(host.deviceId);
+                                if (context.mounted) {
+                                  Navigator.pop(context);
+                                }
+                              } catch (e) {
+                                if (context.mounted) {
+                                  setState(() => _error = '$e');
+                                }
+                              }
+                            },
+                          ),
+                      ],
+                    ),
+        ),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancel')),
+        ],
       );
 }
 

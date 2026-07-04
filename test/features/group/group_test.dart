@@ -72,4 +72,33 @@ void main() {
     ]);
     expect(g2.mergedPersona.stamina, 0.2);
   });
+
+  test('MemberPersona wire codec round-trips', () {
+    final m = _member('user-1', [0.9, 0.6, 0.8, 0.7, 0.5]);
+    final back = MemberPersona.decode(m.encode());
+    expect(back.userId, 'user-1');
+    expect(back.displayName, 'user-1');
+    expect(back.persona.vector, m.persona.vector);
+  });
+
+  test('Group state codec round-trips and recomputes merge', () {
+    final g = Group(
+      hostId: 'host-1',
+      members: [
+        _member('a', [0.9, 0.6, 0.8, 0.7, 0.5]),
+        _member('b', [0.3, 0.8, 0.4, 0.5, 0.9]),
+      ],
+      mergedPersona: Group.computeMergedPersona([
+        _member('a', [0.9, 0.6, 0.8, 0.7, 0.5]),
+        _member('b', [0.3, 0.8, 0.4, 0.5, 0.9]),
+      ]),
+      status: GroupStatus.forming,
+    );
+    final back = Group.decodeState(g.encodeState());
+    expect(back.hostId, 'host-1');
+    expect(back.status, GroupStatus.forming);
+    expect(back.members.length, 2);
+    expect(back.mergedPersona.stamina, 0.3);
+    expect(back.mergedPersona.curiosity, closeTo(0.7, 0.001));
+  });
 }
