@@ -7,6 +7,8 @@ import '../features/onboarding/onboarding_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/explore/explore_screen.dart';
 import '../features/explore/spot.dart';
+import '../features/community/compose_post_screen.dart';
+import '../features/community/feed_screen.dart';
 import '../features/group/group_itinerary_screen.dart';
 import '../features/group/group_screen.dart';
 import '../features/journal/journal_screen.dart';
@@ -26,6 +28,7 @@ const kTaskRoute = '/task';
 const kGroupRoute = '/group';
 const kGroupItineraryRoute = '/group/itinerary';
 const kCommunityRoute = '/community';
+const kComposePostRoute = '/community/compose';
 const kSettingsRoute = '/settings';
 
 const _tabRoutes = [kHomeRoute, kExploreRoute, kJournalRoute, kProfileRoute];
@@ -59,6 +62,15 @@ final router = GoRouter(
     GoRoute(
         path: kGroupItineraryRoute,
         builder: (_, __) => const GroupItineraryScreen()),
+    GoRoute(path: kCommunityRoute, builder: (_, __) => const FeedScreen()),
+    GoRoute(
+      path: kComposePostRoute,
+      builder: (context, state) => ComposePostScreen(
+        prefilledPlaceName: state.uri.queryParameters['place'],
+        lat: double.tryParse(state.uri.queryParameters['lat'] ?? ''),
+        lng: double.tryParse(state.uri.queryParameters['lng'] ?? ''),
+      ),
+    ),
     ShellRoute(
       builder: (context, state, child) => _NavShell(child: child),
       routes: [

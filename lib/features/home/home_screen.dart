@@ -28,6 +28,12 @@ class HomeScreen extends StatelessWidget {
             onTap: () => context.push(kGroupRoute),
           ),
           _HomeCard(
+            icon: Icons.people,
+            title: 'Community Feed',
+            subtitle: 'Moments shared by fellow explorers',
+            onTap: () => context.push(kCommunityRoute),
+          ),
+          _HomeCard(
             icon: Icons.book,
             title: 'My Journal',
             subtitle: 'Reflections, recordings, memories',
