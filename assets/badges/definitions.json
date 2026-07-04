@@ -1,0 +1,11 @@
+[
+  {"id": "first_steps", "title": "First Steps", "description": "Complete your first journey", "icon": "footprint", "type": "achievement"},
+  {"id": "nature_listener", "title": "Nature Listener", "description": "Complete 5 sound tasks", "icon": "mic", "type": "achievement"},
+  {"id": "trail_mind", "title": "Trail Mind", "description": "Hike 50 km total", "icon": "route", "type": "achievement"},
+  {"id": "early_bird", "title": "Early Bird", "description": "Start a journey before 7 AM", "icon": "wb_sunny", "type": "achievement"},
+  {"id": "mindful_creator", "title": "Mindful Creator", "description": "Complete 10 creative tasks", "icon": "brush", "type": "achievement"},
+  {"id": "milestone_10", "title": "10 Journeys", "description": "Complete 10 journeys", "icon": "star", "type": "milestone"},
+  {"id": "milestone_25", "title": "25 Journeys", "description": "Complete 25 journeys", "icon": "star", "type": "milestone"},
+  {"id": "milestone_50", "title": "50 Journeys", "description": "Complete 50 journeys", "icon": "star", "type": "milestone"},
+  {"id": "milestone_100", "title": "100 Journeys", "description": "Complete 100 journeys", "icon": "star", "type": "milestone"}
+]

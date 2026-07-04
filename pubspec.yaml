@@ -56,3 +56,4 @@ flutter:
   assets:
     - assets/tasks/library.json
     - assets/hazards/hazard_zones.geojson
+    - assets/badges/definitions.json
