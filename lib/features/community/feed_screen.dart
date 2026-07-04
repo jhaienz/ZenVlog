@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../app/router.dart';
+import '../../core/auth/auth_service.dart';
 import 'feed_provider.dart';
 import 'post.dart';
 
@@ -64,12 +65,12 @@ class _FeedList extends ConsumerWidget {
   }
 }
 
-class _PostCard extends StatelessWidget {
+class _PostCard extends ConsumerWidget {
   final Post post;
   const _PostCard({required this.post});
 
   @override
-  Widget build(BuildContext context) => Card(
+  Widget build(BuildContext context, WidgetRef ref) => Card(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -100,10 +101,17 @@ class _PostCard extends StatelessWidget {
                 ),
               ],
               const SizedBox(height: 8),
-              Text(
-                '@${post.userId} · ${_timeAgo(post.createdAt)}',
-                style:
-                    const TextStyle(color: Color(0xFF1A3A2A), fontSize: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '@${post.userId} · ${_timeAgo(post.createdAt)}',
+                    style: const TextStyle(
+                        color: Color(0xFF1A3A2A), fontSize: 12),
+                  ),
+                  if (post.userId != AuthService.userId)
+                    _FollowButton(userId: post.userId),
+                ],
               ),
             ],
           ),
@@ -115,5 +123,28 @@ class _PostCard extends StatelessWidget {
     if (d.inMinutes < 60) return '${d.inMinutes}m ago';
     if (d.inHours < 24) return '${d.inHours}h ago';
     return '${d.inDays}d ago';
+  }
+}
+
+class _FollowButton extends ConsumerWidget {
+  final String userId;
+  const _FollowButton({required this.userId});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final follows = ref.watch(followsNotifierProvider).value ?? {};
+    final following = follows.contains(userId);
+    return TextButton.icon(
+      onPressed: () =>
+          ref.read(followsNotifierProvider.notifier).toggle(userId),
+      icon: Icon(following ? Icons.check : Icons.person_add_alt,
+          size: 14, color: const Color(0xFFD4A853)),
+      label: Text(following ? 'Following' : 'Follow',
+          style: const TextStyle(color: Color(0xFFD4A853), fontSize: 12)),
+      style: TextButton.styleFrom(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          minimumSize: Size.zero,
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+    );
   }
 }

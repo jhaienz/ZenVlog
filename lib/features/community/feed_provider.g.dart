@@ -6,7 +6,23 @@ part of 'feed_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$feedNotifierHash() => r'9237c3570417e88577cbb71d4308ad53ae8703ad';
+String _$followsNotifierHash() => r'd9ae2def54865c8f9e113cb34e549cd4ddce8a09';
+
+/// See also [FollowsNotifier].
+@ProviderFor(FollowsNotifier)
+final followsNotifierProvider =
+    AutoDisposeAsyncNotifierProvider<FollowsNotifier, Set<String>>.internal(
+  FollowsNotifier.new,
+  name: r'followsNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$followsNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$FollowsNotifier = AutoDisposeAsyncNotifier<Set<String>>;
+String _$feedNotifierHash() => r'e3b6c187ceff0184045f1f99ee1f54ac3169b54e';
 
 /// Copied from Dart SDK
 class _SystemHash {

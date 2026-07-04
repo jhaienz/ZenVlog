@@ -41,7 +41,35 @@ class JourneyScreen extends ConsumerWidget {
                 await ref
                     .read(personaNotifierProvider.notifier)
                     .recordCompletedJourney(ended);
-                if (context.mounted) context.go(kJournalRoute);
+                if (!context.mounted) return;
+                final share = await showDialog<bool>(
+                  context: context,
+                  builder: (ctx) => AlertDialog(
+                    title: const Text('Journey complete'),
+                    content: const Text(
+                        'Share this moment to the community feed? '
+                        'Only an approximate location (~1km) is shared.'),
+                    actions: [
+                      TextButton(
+                          onPressed: () => Navigator.pop(ctx, false),
+                          child: const Text('Not now')),
+                      ElevatedButton(
+                          onPressed: () => Navigator.pop(ctx, true),
+                          child: const Text('Share to Feed')),
+                    ],
+                  ),
+                );
+                if (!context.mounted) return;
+                if (share == true) {
+                  context.go(kHomeRoute);
+                  context.push(Uri(path: kComposePostRoute, queryParameters: {
+                    'place': spot.name,
+                    'lat': '${spot.lat}',
+                    'lng': '${spot.lng}',
+                  }).toString());
+                } else {
+                  context.go(kJournalRoute);
+                }
               },
               child: const Text('End',
                   style: TextStyle(color: Color(0xFFD4A853))),

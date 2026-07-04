@@ -5,8 +5,16 @@
     "description": "Record the natural soundscape for 60 seconds. Focus on layers — water, wind, birds, distant sounds.",
     "type": "sound",
     "durationSeconds": 60,
-    "requiredOsmTags": ["natural=water"],
-    "personaAffinities": [0.2, 0.5, 0.8, 0.9, 0.2]
+    "requiredOsmTags": [
+      "natural=water"
+    ],
+    "personaAffinities": [
+      0.2,
+      0.5,
+      0.8,
+      0.9,
+      0.2
+    ]
   },
   {
     "id": "sound_forest_floor",
@@ -14,8 +22,16 @@
     "description": "Sit still and record 60 seconds of the forest. Count how many distinct sounds you can identify afterward.",
     "type": "sound",
     "durationSeconds": 60,
-    "requiredOsmTags": ["natural=wood"],
-    "personaAffinities": [0.1, 0.6, 0.8, 0.9, 0.2]
+    "requiredOsmTags": [
+      "natural=wood"
+    ],
+    "personaAffinities": [
+      0.1,
+      0.6,
+      0.8,
+      0.9,
+      0.2
+    ]
   },
   {
     "id": "sound_wind_high",
@@ -23,8 +39,17 @@
     "description": "At an open high point, record the wind for 45 seconds. Notice how it changes pitch with the terrain.",
     "type": "sound",
     "durationSeconds": 45,
-    "requiredOsmTags": ["natural=peak", "natural=cliff"],
-    "personaAffinities": [0.8, 0.6, 0.6, 0.7, 0.1]
+    "requiredOsmTags": [
+      "natural=peak",
+      "natural=cliff"
+    ],
+    "personaAffinities": [
+      0.8,
+      0.6,
+      0.6,
+      0.7,
+      0.1
+    ]
   },
   {
     "id": "sound_echo",
@@ -32,8 +57,16 @@
     "description": "Near the cave mouth, record a soft clap and its echo. Listen to how the space answers you.",
     "type": "sound",
     "durationSeconds": 30,
-    "requiredOsmTags": ["natural=cave_entrance"],
-    "personaAffinities": [0.5, 0.9, 0.7, 0.5, 0.3]
+    "requiredOsmTags": [
+      "natural=cave_entrance"
+    ],
+    "personaAffinities": [
+      0.5,
+      0.9,
+      0.7,
+      0.5,
+      0.3
+    ]
   },
   {
     "id": "sketch_flow",
@@ -41,8 +74,16 @@
     "description": "Find a spot by the water and sketch how the stream moves around obstacles.",
     "type": "sketch",
     "durationSeconds": 900,
-    "requiredOsmTags": ["natural=water"],
-    "personaAffinities": [0.1, 0.7, 0.6, 0.8, 0.3]
+    "requiredOsmTags": [
+      "natural=water"
+    ],
+    "personaAffinities": [
+      0.1,
+      0.7,
+      0.6,
+      0.8,
+      0.3
+    ]
   },
   {
     "id": "sketch_canopy",
@@ -50,8 +91,16 @@
     "description": "Look up. Sketch the shapes of sky visible between the branches.",
     "type": "sketch",
     "durationSeconds": 600,
-    "requiredOsmTags": ["natural=wood"],
-    "personaAffinities": [0.1, 0.6, 0.7, 0.8, 0.2]
+    "requiredOsmTags": [
+      "natural=wood"
+    ],
+    "personaAffinities": [
+      0.1,
+      0.6,
+      0.7,
+      0.8,
+      0.2
+    ]
   },
   {
     "id": "sketch_horizon",
@@ -59,8 +108,16 @@
     "description": "From the summit, sketch only the horizon line — every ridge, every dip, one continuous stroke.",
     "type": "sketch",
     "durationSeconds": 600,
-    "requiredOsmTags": ["natural=peak"],
-    "personaAffinities": [0.9, 0.7, 0.5, 0.6, 0.2]
+    "requiredOsmTags": [
+      "natural=peak"
+    ],
+    "personaAffinities": [
+      0.9,
+      0.7,
+      0.5,
+      0.6,
+      0.2
+    ]
   },
   {
     "id": "sketch_light_shadow",
@@ -69,7 +126,13 @@
     "type": "sketch",
     "durationSeconds": 300,
     "requiredOsmTags": [],
-    "personaAffinities": [0.1, 0.8, 0.5, 0.7, 0.2]
+    "personaAffinities": [
+      0.1,
+      0.8,
+      0.5,
+      0.7,
+      0.2
+    ]
   },
   {
     "id": "sketch_texture_study",
@@ -78,7 +141,13 @@
     "type": "sketch",
     "durationSeconds": 480,
     "requiredOsmTags": [],
-    "personaAffinities": [0.1, 0.7, 0.7, 0.8, 0.3]
+    "personaAffinities": [
+      0.1,
+      0.7,
+      0.7,
+      0.8,
+      0.3
+    ]
   },
   {
     "id": "tactile_stone_arrangement",
@@ -87,7 +156,13 @@
     "type": "tactile",
     "durationSeconds": 600,
     "requiredOsmTags": [],
-    "personaAffinities": [0.1, 0.6, 0.9, 0.5, 0.4]
+    "personaAffinities": [
+      0.1,
+      0.6,
+      0.9,
+      0.5,
+      0.4
+    ]
   },
   {
     "id": "tactile_water_touch",
@@ -95,8 +170,16 @@
     "description": "Rest your hand in the water for 30 seconds. Notice the exact moment your skin stops registering cold.",
     "type": "tactile",
     "durationSeconds": 120,
-    "requiredOsmTags": ["natural=water"],
-    "personaAffinities": [0.1, 0.5, 0.8, 0.8, 0.2]
+    "requiredOsmTags": [
+      "natural=water"
+    ],
+    "personaAffinities": [
+      0.1,
+      0.5,
+      0.8,
+      0.8,
+      0.2
+    ]
   },
   {
     "id": "tactile_bark_reading",
@@ -104,8 +187,16 @@
     "description": "Close your eyes and trace the bark of three different trees. Describe each one in a single word.",
     "type": "tactile",
     "durationSeconds": 300,
-    "requiredOsmTags": ["natural=wood"],
-    "personaAffinities": [0.1, 0.7, 0.8, 0.9, 0.3]
+    "requiredOsmTags": [
+      "natural=wood"
+    ],
+    "personaAffinities": [
+      0.1,
+      0.7,
+      0.8,
+      0.9,
+      0.3
+    ]
   },
   {
     "id": "tactile_grass_barefoot",
@@ -113,8 +204,16 @@
     "description": "If conditions allow, stand barefoot in the grass for two minutes. Notice where your weight settles.",
     "type": "tactile",
     "durationSeconds": 120,
-    "requiredOsmTags": ["natural=grassland"],
-    "personaAffinities": [0.1, 0.4, 0.8, 0.8, 0.3]
+    "requiredOsmTags": [
+      "natural=grassland"
+    ],
+    "personaAffinities": [
+      0.1,
+      0.4,
+      0.8,
+      0.8,
+      0.3
+    ]
   },
   {
     "id": "reflective_peak_breath",
@@ -122,8 +221,16 @@
     "description": "At the highest point you can safely reach, take 10 slow breaths. Count each one.",
     "type": "reflective",
     "durationSeconds": 120,
-    "requiredOsmTags": ["natural=peak"],
-    "personaAffinities": [0.9, 0.5, 0.7, 0.6, 0.1]
+    "requiredOsmTags": [
+      "natural=peak"
+    ],
+    "personaAffinities": [
+      0.9,
+      0.5,
+      0.7,
+      0.6,
+      0.1
+    ]
   },
   {
     "id": "reflective_one_sentence",
@@ -132,7 +239,13 @@
     "type": "reflective",
     "durationSeconds": 300,
     "requiredOsmTags": [],
-    "personaAffinities": [0.1, 0.6, 0.8, 0.5, 0.5]
+    "personaAffinities": [
+      0.1,
+      0.6,
+      0.8,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": "reflective_name_it",
@@ -141,7 +254,13 @@
     "type": "reflective",
     "durationSeconds": 180,
     "requiredOsmTags": [],
-    "personaAffinities": [0.1, 0.8, 0.7, 0.6, 0.6]
+    "personaAffinities": [
+      0.1,
+      0.8,
+      0.7,
+      0.6,
+      0.6
+    ]
   },
   {
     "id": "reflective_cliff_edge",
@@ -149,8 +268,16 @@
     "description": "From a safe distance, observe the cliff edge. Write what the boundary between solid and air makes you feel.",
     "type": "reflective",
     "durationSeconds": 240,
-    "requiredOsmTags": ["natural=cliff"],
-    "personaAffinities": [0.7, 0.8, 0.6, 0.5, 0.2]
+    "requiredOsmTags": [
+      "natural=cliff"
+    ],
+    "personaAffinities": [
+      0.7,
+      0.8,
+      0.6,
+      0.5,
+      0.2
+    ]
   },
   {
     "id": "reflective_threshold",
@@ -158,8 +285,16 @@
     "description": "Stand at the cave entrance without entering. Write three words for what lies ahead and three for what lies behind.",
     "type": "reflective",
     "durationSeconds": 240,
-    "requiredOsmTags": ["natural=cave_entrance"],
-    "personaAffinities": [0.5, 0.9, 0.8, 0.5, 0.4]
+    "requiredOsmTags": [
+      "natural=cave_entrance"
+    ],
+    "personaAffinities": [
+      0.5,
+      0.9,
+      0.8,
+      0.5,
+      0.4
+    ]
   },
   {
     "id": "reflective_meadow_clouds",
@@ -167,8 +302,16 @@
     "description": "Lie back in the meadow and follow one cloud until it changes shape completely.",
     "type": "reflective",
     "durationSeconds": 300,
-    "requiredOsmTags": ["natural=grassland"],
-    "personaAffinities": [0.1, 0.5, 0.9, 0.7, 0.2]
+    "requiredOsmTags": [
+      "natural=grassland"
+    ],
+    "personaAffinities": [
+      0.1,
+      0.5,
+      0.9,
+      0.7,
+      0.2
+    ]
   },
   {
     "id": "sound_open_field",
@@ -176,7 +319,1026 @@
     "description": "In the open field, record 60 seconds facing each cardinal direction. Which way carries the most sound?",
     "type": "sound",
     "durationSeconds": 240,
-    "requiredOsmTags": ["natural=grassland"],
-    "personaAffinities": [0.3, 0.8, 0.7, 0.7, 0.2]
+    "requiredOsmTags": [
+      "natural=grassland"
+    ],
+    "personaAffinities": [
+      0.3,
+      0.8,
+      0.7,
+      0.7,
+      0.2
+    ]
+  },
+  {
+    "id": "sound_water_edge",
+    "title": "Water's Edge",
+    "description": "Record 60 seconds right at the waterline. Capture the rhythm where water meets land.",
+    "type": "sound",
+    "durationSeconds": 60,
+    "requiredOsmTags": [
+      "natural=water"
+    ],
+    "personaAffinities": [
+      0.2,
+      0.4,
+      0.7,
+      0.9,
+      0.2
+    ]
+  },
+  {
+    "id": "sound_beach_waves",
+    "title": "Wave Count",
+    "description": "Record two minutes of waves. Later, count the sets and notice the longest pause.",
+    "type": "sound",
+    "durationSeconds": 120,
+    "requiredOsmTags": [
+      "natural=beach",
+      "natural=sand"
+    ],
+    "personaAffinities": [
+      0.2,
+      0.5,
+      0.6,
+      0.8,
+      0.2
+    ]
+  },
+  {
+    "id": "sound_spring_source",
+    "title": "Source Sound",
+    "description": "Record 45 seconds as close to the spring source as you can safely get.",
+    "type": "sound",
+    "durationSeconds": 45,
+    "requiredOsmTags": [
+      "natural=spring"
+    ],
+    "personaAffinities": [
+      0.4,
+      0.7,
+      0.7,
+      0.9,
+      0.2
+    ]
+  },
+  {
+    "id": "sound_wetland_dawn",
+    "title": "Wetland Chorus",
+    "description": "Record 90 seconds of the wetland. Frogs, insects, birds — count the voices.",
+    "type": "sound",
+    "durationSeconds": 90,
+    "requiredOsmTags": [
+      "natural=wetland"
+    ],
+    "personaAffinities": [
+      0.3,
+      0.6,
+      0.7,
+      0.9,
+      0.1
+    ]
+  },
+  {
+    "id": "sound_scrub_insects",
+    "title": "Small Lives",
+    "description": "Kneel by the scrub and record 60 seconds of insect sound up close.",
+    "type": "sound",
+    "durationSeconds": 60,
+    "requiredOsmTags": [
+      "natural=scrub",
+      "natural=heath"
+    ],
+    "personaAffinities": [
+      0.2,
+      0.8,
+      0.6,
+      0.8,
+      0.1
+    ]
+  },
+  {
+    "id": "sound_cave_drip",
+    "title": "Cave Metronome",
+    "description": "At the cave mouth, record 60 seconds. Listen for drips and the change in air.",
+    "type": "sound",
+    "durationSeconds": 60,
+    "requiredOsmTags": [
+      "natural=cave_entrance"
+    ],
+    "personaAffinities": [
+      0.5,
+      0.9,
+      0.7,
+      0.6,
+      0.3
+    ]
+  },
+  {
+    "id": "sound_grass_wind",
+    "title": "Grass Static",
+    "description": "Hold the recorder low in the grass for 45 seconds of wind moving through blades.",
+    "type": "sound",
+    "durationSeconds": 45,
+    "requiredOsmTags": [
+      "natural=grassland"
+    ],
+    "personaAffinities": [
+      0.2,
+      0.5,
+      0.7,
+      0.8,
+      0.1
+    ]
+  },
+  {
+    "id": "sound_ridge_silence",
+    "title": "Thin Air",
+    "description": "On the ridge, record the quietest 60 seconds you can find. Silence has texture.",
+    "type": "sound",
+    "durationSeconds": 60,
+    "requiredOsmTags": [
+      "natural=ridge",
+      "natural=peak"
+    ],
+    "personaAffinities": [
+      0.9,
+      0.5,
+      0.9,
+      0.7,
+      0.1
+    ]
+  },
+  {
+    "id": "sound_own_steps",
+    "title": "Your Footsteps",
+    "description": "Record 45 seconds of your own walking. Gravel, leaves, mud — your soundtrack.",
+    "type": "sound",
+    "durationSeconds": 45,
+    "requiredOsmTags": [],
+    "personaAffinities": [
+      0.5,
+      0.5,
+      0.6,
+      0.6,
+      0.2
+    ]
+  },
+  {
+    "id": "sound_far_near",
+    "title": "Far and Near",
+    "description": "Record 60 seconds. Name the farthest sound you caught and the nearest.",
+    "type": "sound",
+    "durationSeconds": 60,
+    "requiredOsmTags": [],
+    "personaAffinities": [
+      0.2,
+      0.7,
+      0.6,
+      0.7,
+      0.3
+    ]
+  },
+  {
+    "id": "sound_tree_trunk",
+    "title": "Trunk Ear",
+    "description": "Press the phone gently to a tree trunk and record 30 seconds. Wood carries sound.",
+    "type": "sound",
+    "durationSeconds": 30,
+    "requiredOsmTags": [
+      "natural=tree",
+      "natural=wood"
+    ],
+    "personaAffinities": [
+      0.1,
+      0.9,
+      0.6,
+      0.9,
+      0.1
+    ]
+  },
+  {
+    "id": "sound_valley_echo",
+    "title": "Valley Answer",
+    "description": "Clap once toward the valley and record the reply. Try three spots.",
+    "type": "sound",
+    "durationSeconds": 45,
+    "requiredOsmTags": [
+      "natural=valley",
+      "natural=cliff"
+    ],
+    "personaAffinities": [
+      0.6,
+      0.8,
+      0.4,
+      0.6,
+      0.2
+    ]
+  },
+  {
+    "id": "sound_rain_shelter",
+    "title": "Rain Roof",
+    "description": "If rain comes, shelter and record 90 seconds of it hitting leaves or rock.",
+    "type": "sound",
+    "durationSeconds": 90,
+    "requiredOsmTags": [],
+    "personaAffinities": [
+      0.2,
+      0.5,
+      0.8,
+      0.8,
+      0.2
+    ]
+  },
+  {
+    "id": "sound_before_after",
+    "title": "Before and After",
+    "description": "Record 30 seconds standing, then 30 seconds sitting on the ground. Compare.",
+    "type": "sound",
+    "durationSeconds": 60,
+    "requiredOsmTags": [],
+    "personaAffinities": [
+      0.2,
+      0.7,
+      0.7,
+      0.7,
+      0.1
+    ]
+  },
+  {
+    "id": "sound_bird_single",
+    "title": "One Bird",
+    "description": "Pick a single bird call and record until you catch it three times.",
+    "type": "sound",
+    "durationSeconds": 120,
+    "requiredOsmTags": [
+      "natural=wood",
+      "natural=wetland"
+    ],
+    "personaAffinities": [
+      0.2,
+      0.8,
+      0.8,
+      0.9,
+      0.1
+    ]
+  },
+  {
+    "id": "sketch_water_line",
+    "title": "One-Line Shore",
+    "description": "Draw the waterline in a single unbroken stroke. No lifting the pen.",
+    "type": "sketch",
+    "durationSeconds": 300,
+    "requiredOsmTags": [
+      "natural=water",
+      "natural=beach"
+    ],
+    "personaAffinities": [
+      0.2,
+      0.6,
+      0.7,
+      0.8,
+      0.3
+    ]
+  },
+  {
+    "id": "sketch_peak_profile",
+    "title": "Skyline Profile",
+    "description": "Sketch the horizon's silhouette edge to edge. Just the line, nothing else.",
+    "type": "sketch",
+    "durationSeconds": 300,
+    "requiredOsmTags": [
+      "natural=peak",
+      "natural=ridge"
+    ],
+    "personaAffinities": [
+      0.8,
+      0.6,
+      0.7,
+      0.7,
+      0.2
+    ]
+  },
+  {
+    "id": "sketch_leaf_vein",
+    "title": "Vein Map",
+    "description": "Pick one leaf. Draw only its veins, as large as your page allows.",
+    "type": "sketch",
+    "durationSeconds": 300,
+    "requiredOsmTags": [
+      "natural=wood",
+      "natural=tree"
+    ],
+    "personaAffinities": [
+      0.1,
+      0.8,
+      0.8,
+      0.9,
+      0.2
+    ]
+  },
+  {
+    "id": "sketch_cave_dark",
+    "title": "Edge of Dark",
+    "description": "Sketch the cave mouth — concentrate on where light gives up.",
+    "type": "sketch",
+    "durationSeconds": 300,
+    "requiredOsmTags": [
+      "natural=cave_entrance"
+    ],
+    "personaAffinities": [
+      0.5,
+      0.9,
+      0.7,
+      0.5,
+      0.3
+    ]
+  },
+  {
+    "id": "sketch_grass_five",
+    "title": "Five Blades",
+    "description": "Draw five blades of grass exactly as they lean. Wind included.",
+    "type": "sketch",
+    "durationSeconds": 240,
+    "requiredOsmTags": [
+      "natural=grassland"
+    ],
+    "personaAffinities": [
+      0.1,
+      0.6,
+      0.8,
+      0.8,
+      0.1
+    ]
+  },
+  {
+    "id": "sketch_rock_face",
+    "title": "Rock Portrait",
+    "description": "Draw the cliff face like a portrait. Find its oldest wrinkle.",
+    "type": "sketch",
+    "durationSeconds": 360,
+    "requiredOsmTags": [
+      "natural=cliff",
+      "natural=bare_rock"
+    ],
+    "personaAffinities": [
+      0.6,
+      0.7,
+      0.7,
+      0.7,
+      0.2
+    ]
+  },
+  {
+    "id": "sketch_blind_contour",
+    "title": "Blind Contour",
+    "description": "Draw what's in front of you without looking at the page once.",
+    "type": "sketch",
+    "durationSeconds": 180,
+    "requiredOsmTags": [],
+    "personaAffinities": [
+      0.2,
+      0.9,
+      0.6,
+      0.6,
+      0.3
+    ]
+  },
+  {
+    "id": "sketch_wrong_hand",
+    "title": "Other Hand",
+    "description": "Sketch the scene with your non-dominant hand. Embrace the wobble.",
+    "type": "sketch",
+    "durationSeconds": 240,
+    "requiredOsmTags": [],
+    "personaAffinities": [
+      0.2,
+      0.8,
+      0.5,
+      0.6,
+      0.3
+    ]
+  },
+  {
+    "id": "sketch_shadow_only",
+    "title": "Shadows Only",
+    "description": "Draw only the shadows you can see. Let the light stay empty paper.",
+    "type": "sketch",
+    "durationSeconds": 300,
+    "requiredOsmTags": [],
+    "personaAffinities": [
+      0.2,
+      0.8,
+      0.7,
+      0.6,
+      0.3
+    ]
+  },
+  {
+    "id": "sketch_water_motion",
+    "title": "Moving Water",
+    "description": "Sketch flowing water for three minutes. Accept that it won't hold still.",
+    "type": "sketch",
+    "durationSeconds": 180,
+    "requiredOsmTags": [
+      "natural=water",
+      "natural=spring"
+    ],
+    "personaAffinities": [
+      0.3,
+      0.7,
+      0.7,
+      0.9,
+      0.2
+    ]
+  },
+  {
+    "id": "sketch_tiny_world",
+    "title": "One Square Foot",
+    "description": "Frame one square foot of ground with your hands. Draw everything inside it.",
+    "type": "sketch",
+    "durationSeconds": 420,
+    "requiredOsmTags": [
+      "natural=heath",
+      "natural=scrub"
+    ],
+    "personaAffinities": [
+      0.1,
+      0.9,
+      0.8,
+      0.9,
+      0.1
+    ]
+  },
+  {
+    "id": "sketch_wetland_layers",
+    "title": "Wet Layers",
+    "description": "Sketch the wetland as horizontal bands: water, reeds, treeline, sky.",
+    "type": "sketch",
+    "durationSeconds": 300,
+    "requiredOsmTags": [
+      "natural=wetland"
+    ],
+    "personaAffinities": [
+      0.2,
+      0.6,
+      0.7,
+      0.8,
+      0.2
+    ]
+  },
+  {
+    "id": "sketch_path_behind",
+    "title": "The Way Back",
+    "description": "Turn around. Sketch the path you just walked — it looks different backwards.",
+    "type": "sketch",
+    "durationSeconds": 300,
+    "requiredOsmTags": [],
+    "personaAffinities": [
+      0.4,
+      0.7,
+      0.6,
+      0.6,
+      0.3
+    ]
+  },
+  {
+    "id": "sketch_sand_texture",
+    "title": "Grain Study",
+    "description": "Draw the patterns wind or water left in the sand before they vanish.",
+    "type": "sketch",
+    "durationSeconds": 240,
+    "requiredOsmTags": [
+      "natural=sand",
+      "natural=beach"
+    ],
+    "personaAffinities": [
+      0.2,
+      0.7,
+      0.7,
+      0.8,
+      0.1
+    ]
+  },
+  {
+    "id": "sketch_valley_depth",
+    "title": "Depth in Five Lines",
+    "description": "Capture the valley's depth using no more than five lines.",
+    "type": "sketch",
+    "durationSeconds": 240,
+    "requiredOsmTags": [
+      "natural=valley"
+    ],
+    "personaAffinities": [
+      0.6,
+      0.7,
+      0.7,
+      0.7,
+      0.2
+    ]
+  },
+  {
+    "id": "tactile_leaf_pair",
+    "title": "Match the Leaves",
+    "description": "Find two leaves from different plants that feel the same with eyes closed.",
+    "type": "tactile",
+    "durationSeconds": 240,
+    "requiredOsmTags": [
+      "natural=wood",
+      "natural=scrub"
+    ],
+    "personaAffinities": [
+      0.2,
+      0.8,
+      0.6,
+      0.9,
+      0.1
+    ]
+  },
+  {
+    "id": "tactile_cold_water",
+    "title": "Thirty-Second Hold",
+    "description": "Hold one hand in the water for 30 seconds. Notice when cold becomes ache becomes numb.",
+    "type": "tactile",
+    "durationSeconds": 60,
+    "requiredOsmTags": [
+      "natural=water",
+      "natural=spring"
+    ],
+    "personaAffinities": [
+      0.4,
+      0.6,
+      0.6,
+      0.8,
+      0.1
+    ]
+  },
+  {
+    "id": "tactile_sand_burrow",
+    "title": "Hands in Sand",
+    "description": "Bury both hands to the wrist. Feel the temperature change with depth.",
+    "type": "tactile",
+    "durationSeconds": 120,
+    "requiredOsmTags": [
+      "natural=sand",
+      "natural=beach"
+    ],
+    "personaAffinities": [
+      0.1,
+      0.6,
+      0.7,
+      0.8,
+      0.1
+    ]
+  },
+  {
+    "id": "tactile_rock_warmth",
+    "title": "Sun Side",
+    "description": "Find a boulder. Compare the sun side and shade side with both palms.",
+    "type": "tactile",
+    "durationSeconds": 120,
+    "requiredOsmTags": [
+      "natural=bare_rock",
+      "natural=cliff"
+    ],
+    "personaAffinities": [
+      0.4,
+      0.7,
+      0.6,
+      0.7,
+      0.1
+    ]
+  },
+  {
+    "id": "tactile_moss_press",
+    "title": "Moss Pillow",
+    "description": "Press a palm flat on moss for a full minute. It presses back, slowly.",
+    "type": "tactile",
+    "durationSeconds": 90,
+    "requiredOsmTags": [
+      "natural=wood",
+      "natural=cave_entrance"
+    ],
+    "personaAffinities": [
+      0.1,
+      0.6,
+      0.8,
+      0.9,
+      0.1
+    ]
+  },
+  {
+    "id": "tactile_wind_face",
+    "title": "Face the Wind",
+    "description": "Stand at the exposed point, close your eyes, and map where the wind touches your face.",
+    "type": "tactile",
+    "durationSeconds": 90,
+    "requiredOsmTags": [
+      "natural=peak",
+      "natural=ridge"
+    ],
+    "personaAffinities": [
+      0.8,
+      0.5,
+      0.8,
+      0.7,
+      0.1
+    ]
+  },
+  {
+    "id": "tactile_bark_three",
+    "title": "Three Barks",
+    "description": "Touch three different trees. Rank them roughest to smoothest with eyes closed.",
+    "type": "tactile",
+    "durationSeconds": 240,
+    "requiredOsmTags": [
+      "natural=wood",
+      "natural=tree"
+    ],
+    "personaAffinities": [
+      0.2,
+      0.7,
+      0.6,
+      0.9,
+      0.1
+    ]
+  },
+  {
+    "id": "tactile_mud_shape",
+    "title": "Earth Print",
+    "description": "Press your palm into soft ground. Study the print you leave, then let it stay.",
+    "type": "tactile",
+    "durationSeconds": 120,
+    "requiredOsmTags": [
+      "natural=wetland"
+    ],
+    "personaAffinities": [
+      0.2,
+      0.6,
+      0.6,
+      0.8,
+      0.2
+    ]
+  },
+  {
+    "id": "tactile_grass_walk",
+    "title": "Slow Ten Steps",
+    "description": "Take ten barefoot steps as slowly as you can. Feel each stage of each step.",
+    "type": "tactile",
+    "durationSeconds": 180,
+    "requiredOsmTags": [
+      "natural=grassland"
+    ],
+    "personaAffinities": [
+      0.2,
+      0.5,
+      0.8,
+      0.8,
+      0.1
+    ]
+  },
+  {
+    "id": "tactile_stone_stack_5",
+    "title": "Five-Stone Balance",
+    "description": "Balance five stones. If it falls, breathe once and begin again.",
+    "type": "tactile",
+    "durationSeconds": 420,
+    "requiredOsmTags": [
+      "natural=water",
+      "natural=bare_rock"
+    ],
+    "personaAffinities": [
+      0.3,
+      0.6,
+      0.8,
+      0.7,
+      0.2
+    ]
+  },
+  {
+    "id": "tactile_pocket_find",
+    "title": "Pocket Museum",
+    "description": "Choose one small natural object to carry to the next stop. Study it fully first. Return it when you leave.",
+    "type": "tactile",
+    "durationSeconds": 180,
+    "requiredOsmTags": [],
+    "personaAffinities": [
+      0.3,
+      0.8,
+      0.5,
+      0.8,
+      0.2
+    ]
+  },
+  {
+    "id": "tactile_temperature_map",
+    "title": "Warm Spots",
+    "description": "Find the warmest and coldest surface within ten steps using only your hands.",
+    "type": "tactile",
+    "durationSeconds": 240,
+    "requiredOsmTags": [],
+    "personaAffinities": [
+      0.3,
+      0.8,
+      0.6,
+      0.7,
+      0.1
+    ]
+  },
+  {
+    "id": "tactile_eyes_closed_min",
+    "title": "Dark Minute",
+    "description": "Sit, close your eyes for one minute, and track everything your skin reports.",
+    "type": "tactile",
+    "durationSeconds": 60,
+    "requiredOsmTags": [],
+    "personaAffinities": [
+      0.1,
+      0.5,
+      0.9,
+      0.7,
+      0.1
+    ]
+  },
+  {
+    "id": "tactile_ground_sit",
+    "title": "Ground Contact",
+    "description": "Sit directly on the earth for two minutes. No mat. Notice what it does to your breathing.",
+    "type": "tactile",
+    "durationSeconds": 120,
+    "requiredOsmTags": [
+      "natural=heath",
+      "natural=grassland"
+    ],
+    "personaAffinities": [
+      0.1,
+      0.4,
+      0.8,
+      0.8,
+      0.1
+    ]
+  },
+  {
+    "id": "tactile_water_skim",
+    "title": "Surface Tension",
+    "description": "Skim your fingertips across the water surface without breaking it. Ten passes.",
+    "type": "tactile",
+    "durationSeconds": 120,
+    "requiredOsmTags": [
+      "natural=water"
+    ],
+    "personaAffinities": [
+      0.2,
+      0.7,
+      0.7,
+      0.8,
+      0.1
+    ]
+  },
+  {
+    "id": "reflective_summit_debt",
+    "title": "What It Cost",
+    "description": "At the top, name aloud what the climb cost you and what it paid back.",
+    "type": "reflective",
+    "durationSeconds": 120,
+    "requiredOsmTags": [
+      "natural=peak"
+    ],
+    "personaAffinities": [
+      0.9,
+      0.5,
+      0.8,
+      0.6,
+      0.2
+    ]
+  },
+  {
+    "id": "reflective_water_carry",
+    "title": "What the River Takes",
+    "description": "Watch the water for two minutes. Name one thing you're ready to let it carry off.",
+    "type": "reflective",
+    "durationSeconds": 120,
+    "requiredOsmTags": [
+      "natural=water"
+    ],
+    "personaAffinities": [
+      0.2,
+      0.5,
+      0.8,
+      0.8,
+      0.3
+    ]
+  },
+  {
+    "id": "reflective_cave_question",
+    "title": "Question at the Mouth",
+    "description": "Caves keep secrets. At the entrance, ask yourself the question you've been avoiding.",
+    "type": "reflective",
+    "durationSeconds": 180,
+    "requiredOsmTags": [
+      "natural=cave_entrance"
+    ],
+    "personaAffinities": [
+      0.5,
+      0.8,
+      0.9,
+      0.5,
+      0.3
+    ]
+  },
+  {
+    "id": "reflective_oldest_thing",
+    "title": "Oldest Thing Here",
+    "description": "Find the oldest thing you can see. Say how old you think it is. You're briefly its guest.",
+    "type": "reflective",
+    "durationSeconds": 120,
+    "requiredOsmTags": [],
+    "personaAffinities": [
+      0.2,
+      0.8,
+      0.7,
+      0.8,
+      0.4
+    ]
+  },
+  {
+    "id": "reflective_three_breaths",
+    "title": "Three Deliberate Breaths",
+    "description": "Stop. Three breaths: one for where you were, one for where you are, one for where you're going.",
+    "type": "reflective",
+    "durationSeconds": 60,
+    "requiredOsmTags": [],
+    "personaAffinities": [
+      0.2,
+      0.3,
+      0.8,
+      0.6,
+      0.2
+    ]
+  },
+  {
+    "id": "reflective_borrowed_eyes",
+    "title": "Borrowed Eyes",
+    "description": "Look at this place as someone you miss would see it. What would they notice first?",
+    "type": "reflective",
+    "durationSeconds": 180,
+    "requiredOsmTags": [],
+    "personaAffinities": [
+      0.2,
+      0.6,
+      0.7,
+      0.6,
+      0.5
+    ]
+  },
+  {
+    "id": "reflective_grass_clouds",
+    "title": "Cloud Reading",
+    "description": "Lie in the grass. Watch one cloud from arrival to departure across your view.",
+    "type": "reflective",
+    "durationSeconds": 300,
+    "requiredOsmTags": [
+      "natural=grassland"
+    ],
+    "personaAffinities": [
+      0.1,
+      0.4,
+      0.8,
+      0.8,
+      0.1
+    ]
+  },
+  {
+    "id": "reflective_edge_respect",
+    "title": "Edge Respect",
+    "description": "Near the cliff edge — at a safe distance — name what healthy fear is telling you.",
+    "type": "reflective",
+    "durationSeconds": 120,
+    "requiredOsmTags": [
+      "natural=cliff"
+    ],
+    "personaAffinities": [
+      0.7,
+      0.6,
+      0.7,
+      0.6,
+      0.2
+    ]
+  },
+  {
+    "id": "reflective_beach_horizon",
+    "title": "Horizon Letter",
+    "description": "Face the horizon and compose one sentence you'd send across it.",
+    "type": "reflective",
+    "durationSeconds": 180,
+    "requiredOsmTags": [
+      "natural=beach",
+      "natural=bay"
+    ],
+    "personaAffinities": [
+      0.2,
+      0.5,
+      0.8,
+      0.7,
+      0.3
+    ]
+  },
+  {
+    "id": "reflective_name_five",
+    "title": "Five Greens",
+    "description": "Find and mentally name five different greens around you. Nature never uses one.",
+    "type": "reflective",
+    "durationSeconds": 120,
+    "requiredOsmTags": [
+      "natural=wood",
+      "natural=wetland"
+    ],
+    "personaAffinities": [
+      0.1,
+      0.7,
+      0.6,
+      0.9,
+      0.1
+    ]
+  },
+  {
+    "id": "reflective_future_self",
+    "title": "Note to Next Year",
+    "description": "Speak one sentence to yourself one year from now. The place is the witness.",
+    "type": "reflective",
+    "durationSeconds": 120,
+    "requiredOsmTags": [],
+    "personaAffinities": [
+      0.3,
+      0.5,
+      0.8,
+      0.5,
+      0.3
+    ]
+  },
+  {
+    "id": "reflective_smallest_sound",
+    "title": "Smallest Thing",
+    "description": "Find the smallest living thing you can see. Consider its entire day.",
+    "type": "reflective",
+    "durationSeconds": 180,
+    "requiredOsmTags": [
+      "natural=heath",
+      "natural=scrub"
+    ],
+    "personaAffinities": [
+      0.1,
+      0.9,
+      0.7,
+      0.9,
+      0.1
+    ]
+  },
+  {
+    "id": "reflective_weather_mood",
+    "title": "Inner Weather",
+    "description": "Describe today's sky in three words. Then ask if they describe you too.",
+    "type": "reflective",
+    "durationSeconds": 90,
+    "requiredOsmTags": [],
+    "personaAffinities": [
+      0.2,
+      0.5,
+      0.7,
+      0.6,
+      0.3
+    ]
+  },
+  {
+    "id": "reflective_arrival_ritual",
+    "title": "Arrival Ritual",
+    "description": "Before exploring, stand still at the spot's edge for 30 seconds. Ask permission to enter. Odd, but try it.",
+    "type": "reflective",
+    "durationSeconds": 60,
+    "requiredOsmTags": [],
+    "personaAffinities": [
+      0.2,
+      0.6,
+      0.7,
+      0.7,
+      0.5
+    ]
+  },
+  {
+    "id": "reflective_spring_origin",
+    "title": "Where It Starts",
+    "description": "This water starts here. Trace in your mind where it goes. Then where you go.",
+    "type": "reflective",
+    "durationSeconds": 180,
+    "requiredOsmTags": [
+      "natural=spring"
+    ],
+    "personaAffinities": [
+      0.3,
+      0.8,
+      0.8,
+      0.8,
+      0.2
+    ]
   }
 ]

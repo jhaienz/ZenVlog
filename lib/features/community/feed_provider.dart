@@ -42,11 +42,52 @@ final _devPosts = <Post>[
 ];
 
 @riverpod
+class FollowsNotifier extends _$FollowsNotifier {
+  @override
+  Future<Set<String>> build() async {
+    if (isDev) return {};
+    final res = await Supabase.instance.client
+        .from('follows')
+        .select('following_id')
+        .eq('follower_id', AuthService.userId);
+    return res.map((e) => e['following_id'] as String).toSet();
+  }
+
+  Future<void> toggle(String userId) async {
+    final current = state.value ?? {};
+    final following = current.contains(userId);
+    if (!isDev) {
+      final client = Supabase.instance.client;
+      if (following) {
+        await client
+            .from('follows')
+            .delete()
+            .eq('follower_id', AuthService.userId)
+            .eq('following_id', userId);
+      } else {
+        await client.from('follows').insert(
+            {'follower_id': AuthService.userId, 'following_id': userId});
+      }
+    }
+    state = AsyncData(following
+        ? (current.toSet()..remove(userId))
+        : (current.toSet()..add(userId)));
+    ref.invalidate(feedNotifierProvider(FeedTab.following));
+  }
+}
+
+@riverpod
 class FeedNotifier extends _$FeedNotifier {
   @override
   Future<List<Post>> build(FeedTab tab) async {
     if (isDev) {
-      // ponytail: dev fake feed, all tabs same list; real filtering is prod-only
+      // ponytail: dev fake feed; Following filters by local follow set
+      if (tab == FeedTab.following) {
+        final follows = await ref.watch(followsNotifierProvider.future);
+        return _devPosts.reversed
+            .where((p) => follows.contains(p.userId))
+            .toList();
+      }
       return _devPosts.reversed.toList();
     }
     return _fetchPosts(tab);

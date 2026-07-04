@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import 'feed_provider.dart';
 
 class ComposePostScreen extends ConsumerStatefulWidget {
@@ -17,6 +19,7 @@ class ComposePostScreen extends ConsumerStatefulWidget {
 class _ComposePostScreenState extends ConsumerState<ComposePostScreen> {
   final _contentCtrl = TextEditingController();
   bool _posting = false;
+  File? _photo;
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +62,27 @@ class _ComposePostScreenState extends ConsumerState<ComposePostScreen> {
                 border: OutlineInputBorder(),
               ),
             ),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                TextButton.icon(
+                  onPressed: _pickPhoto,
+                  icon: const Icon(Icons.photo, size: 18),
+                  label: Text(_photo == null ? 'Add photo' : 'Change photo'),
+                ),
+                if (_photo != null)
+                  IconButton(
+                    icon: const Icon(Icons.close, size: 18),
+                    onPressed: () => setState(() => _photo = null),
+                  ),
+              ],
+            ),
+            if (_photo != null)
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.file(_photo!,
+                    height: 140, width: double.infinity, fit: BoxFit.cover),
+              ),
             if (_posting) ...[
               const SizedBox(height: 16),
               const LinearProgressIndicator(),
@@ -67,6 +91,12 @@ class _ComposePostScreenState extends ConsumerState<ComposePostScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _pickPhoto() async {
+    final picked = await ImagePicker()
+        .pickImage(source: ImageSource.gallery, maxWidth: 1600);
+    if (picked != null) setState(() => _photo = File(picked.path));
   }
 
   Future<void> _post() async {
@@ -80,6 +110,7 @@ class _ComposePostScreenState extends ConsumerState<ComposePostScreen> {
             placeName: widget.prefilledPlaceName ?? 'Unknown Place',
             exactLat: widget.lat ?? 0,
             exactLng: widget.lng ?? 0,
+            mediaFile: _photo,
           );
       if (mounted) context.pop();
     } catch (e) {

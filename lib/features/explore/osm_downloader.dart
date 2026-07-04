@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:isar/isar.dart';
 import '../../core/db/isar_service.dart';
 import '../../core/net/doh_client.dart';
 import 'spot.dart';
@@ -17,14 +18,25 @@ class OsmDownloader {
   ];
   static const _retryRounds = 2;
 
+  static const _cacheMaxAge = Duration(days: 7);
+
   /// Downloads natural features for the bounding box and stores them as Spots.
-  /// No-ops if any Spots already exist.
-  // ponytail: single-region cache; track per-bbox coverage if multi-region needed
+  /// Skips the network while cached spots inside the bbox are fresh (< 7 days).
   static Future<int> downloadRegion(
       double south, double west, double north, double east) async {
     final isar = IsarService.instance;
-    final existing = await isar.spots.count();
-    if (existing > 0) return existing;
+    final cached = await isar.spots
+        .filter()
+        .latBetween(south, north)
+        .lngBetween(west, east)
+        .findAll();
+    if (cached.isNotEmpty &&
+        cached
+            .map((s) => s.discoveredAt)
+            .reduce((a, b) => a.isAfter(b) ? a : b)
+            .isAfter(DateTime.now().subtract(_cacheMaxAge))) {
+      return cached.length;
+    }
 
     final query = '''
 [out:json][timeout:25];
