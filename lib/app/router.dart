@@ -13,6 +13,8 @@ import '../features/group/group_itinerary_screen.dart';
 import '../features/group/group_screen.dart';
 import '../features/journal/journal_screen.dart';
 import '../features/journey/journey_screen.dart';
+import '../features/profile/badges_screen.dart';
+import '../features/profile/journey_history_screen.dart';
 import '../features/profile/profile_screen.dart';
 import '../features/profile/settings_screen.dart';
 import '../features/tasks/task_screen.dart';
@@ -77,7 +79,17 @@ final router = GoRouter(
         GoRoute(path: kHomeRoute, builder: (_, __) => const HomeScreen()),
         GoRoute(path: kExploreRoute, builder: (_, __) => const ExploreScreen()),
         GoRoute(path: kJournalRoute, builder: (_, __) => const JournalScreen()),
-        GoRoute(path: kProfileRoute, builder: (_, __) => const ProfileScreen()),
+        GoRoute(
+          path: kProfileRoute,
+          builder: (_, __) => const ProfileScreen(),
+          routes: [
+            GoRoute(
+                path: 'badges', builder: (_, __) => const BadgesScreen()),
+            GoRoute(
+                path: 'history',
+                builder: (_, __) => const JourneyHistoryScreen()),
+          ],
+        ),
       ],
     ),
   ],
