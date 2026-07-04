@@ -35,6 +35,17 @@ subprojects {
     if (state.executed) patchNamespace(this) else afterEvaluate { patchNamespace(this) }
 }
 
+// flutter_gemma 1.2.0 skips `kotlin-android` when it sees AGP 9, assuming
+// built-in Kotlin — but the Flutter template ships android.builtInKotlin=false,
+// so its Kotlin sources never compile. Apply KGP to those modules ourselves.
+subprojects {
+    if (name.startsWith("flutter_gemma")) {
+        plugins.withId("com.android.library") {
+            apply(plugin = "org.jetbrains.kotlin.android")
+        }
+    }
+}
+
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }

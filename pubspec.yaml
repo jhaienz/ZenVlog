@@ -42,6 +42,8 @@ dependencies:
   latlong2: ^0.9.1
   image_picker: ^1.2.3
   bluetooth_low_energy: ^6.2.1
+  flutter_gemma: ^1.2.0
+  flutter_gemma_mediapipe: ^1.0.3
 
 dev_dependencies:
   flutter_test:

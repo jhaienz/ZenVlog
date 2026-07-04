@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gemma/flutter_gemma.dart';
+import 'package:flutter_gemma_mediapipe/flutter_gemma_mediapipe.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:isar/isar.dart';
 import 'app/router.dart';
@@ -16,6 +18,7 @@ import 'features/tasks/task.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  FlutterGemma.initialize(inferenceEngines: const [MediaPipeEngine()]);
   await AuthService.initialize();
   await initTileCache();
   final isar = await IsarService.open([
