@@ -7,6 +7,8 @@ import '../features/onboarding/onboarding_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/explore/explore_screen.dart';
 import '../features/explore/spot.dart';
+import '../features/group/group_itinerary_screen.dart';
+import '../features/group/group_screen.dart';
 import '../features/journal/journal_screen.dart';
 import '../features/journey/journey_screen.dart';
 import '../features/profile/profile_screen.dart';
@@ -22,6 +24,7 @@ const kOnboardingRoute = '/onboarding';
 const kJourneyActiveRoute = '/journey/active';
 const kTaskRoute = '/task';
 const kGroupRoute = '/group';
+const kGroupItineraryRoute = '/group/itinerary';
 const kCommunityRoute = '/community';
 const kSettingsRoute = '/settings';
 
@@ -52,6 +55,10 @@ final router = GoRouter(
       builder: (context, state) => TaskScreen(spot: state.extra! as Spot),
     ),
     GoRoute(path: kSettingsRoute, builder: (_, __) => const SettingsScreen()),
+    GoRoute(path: kGroupRoute, builder: (_, __) => const GroupScreen()),
+    GoRoute(
+        path: kGroupItineraryRoute,
+        builder: (_, __) => const GroupItineraryScreen()),
     ShellRoute(
       builder: (context, state, child) => _NavShell(child: child),
       routes: [
